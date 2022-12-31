@@ -25,11 +25,12 @@ AB = np.concatenate((A,B),axis=1)
 AB0 = np.copy(AB)
 
 # Pivoteo parcial por filas
-tamano = np.shape (AB)
+tamano = np.shape(AB)
 n = tamano[0]
 m = tamano[1]
 
-for i range(0,n-1,1):
+for i in range(0,n-1,1):
+    
     columna = abs(AB[i:,i])
     dondemax = np. argmax(columna)
     
@@ -54,7 +55,7 @@ for i in range(0,n-1,1):
     
     for k in range(adelante,n,1):
         factor = AB[k,i]/pivote
-        AB[k,:] = AB[k,:] - AB[i,:]*
+        AB[k,:] = AB[k,:] - AB[i,:]*factor
         
 # Sustitución hacia atrás
 ultfila = n-1
