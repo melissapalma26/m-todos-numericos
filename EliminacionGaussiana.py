@@ -31,7 +31,7 @@ AB  = np.concatenate((A,B),axis=1)
 AB0 = np.copy(AB)
 
 #pivoteo
-
+#------------------------------------------------------------------------------------------------------------------
 # Pivoteo parcial por filas
 tamano = np.shape(AB)
 n = tamano[0]
@@ -87,7 +87,7 @@ X = np.transpose([X])
 # SALIDA - MOSTRAR RESULTADOS
 print('\nMatriz aumentada:')
 print(AB0)
-print('\nMatriz pivoteada\n')
+print('\nMatriz pivoteada:\n')
 print(AB1)
 print('\nEliminación hacia adelante')
 print(AB)

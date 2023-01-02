@@ -12,13 +12,9 @@ A= np.array([[-4, -1, -2, 3, 7],
              [-7, 10, -3, -4, 4]])
 
 
-B = np.array([[97],
-              [-1],
-              [-22],
-              [138],
-              [62]])
+B = np.array([97, -1, -22, 138, 62])
 
-X0  = np.array([0.,0.,0.])
+X0  = np.array([0.,0.,0.,0.,0])
 
 tol = 0.0000001
 imax = 100
@@ -26,6 +22,7 @@ imax = 100
 # Copiar matriz original para mostrar al final
 B0 = np.transpose([B])
 AB  = np.concatenate((A,B0),axis=1)
+print(AB)
 AB0 = np.copy(AB)
 
 # PROCEDIMIENTO
@@ -34,8 +31,51 @@ tamano = np.shape(A)
 n = tamano[0]
 m = tamano[1]
 
+# Pivoteo
+
+tamano = np.shape(AB)
+n = tamano[0]
+m = tamano[1]
+
+for i in range(0,n-1,1):
+    columna = abs(AB[i:,i])
+    dondemax = np.argmax(columna)
+    
+
+    # intercambio de fila
+    if (dondemax !=0):
+        temporal = np.copy(AB[i,:])
+        AB[i,:] = AB[dondemax + i,:]
+        AB[dondemax + i,:] = temporal
+        print('\ni=',i,'\n',AB)
+
+AB1 = np.copy(AB)
+print('\nMatriz original\n',AB0)
+print('\nMatriz pivoteada\n',AB1)
+
+#---------------------------------
+
+# Separar A y B de la matriz
+
+
+M = np.array(AB1[:,0])
+N = np.array(AB1[:,1])
+P = np.array(AB1[:,2])
+R = np.array(AB1[:,3])
+S = np.array(AB1[:,4])
+
+ZA1 = np.array([M, N, P, R, S])
+ZA = np.transpose(ZA1)
+
+A = np.array(ZA)
+print(A)
+
+B = np.array(AB1[:,5])
+print(B)
+
 #  valores iniciales
 X = np.copy(X0)
+print(X)
 diferencia = np.ones(n, dtype=float)
 error = 2*tol
 
@@ -75,8 +115,10 @@ if (itera>imax):
 verify = np.dot(A,X)
 
 # SALIDA
-print('\nMatriz original')
-print(AB0,'\n')
+print('\nMatriz aumentada:')
+print(AB0)
+print('\nMatriz pivoteada:\n')
+print(AB1)
 print('RESPUESTA:\n')
 print('Solución X:')
 print(X,'\n')

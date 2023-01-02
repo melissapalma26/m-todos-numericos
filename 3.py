@@ -48,6 +48,14 @@ tamano = np.shape(AB)
 n = tamano[0]
 m = tamano[1]
 
+# Pivoteo
+# ----------------------------------------------------------------------------
+
+
+
+
+# Separar A y B de la matriz aumentada
+
 # Eliminacion hacia adelante
 for i in range(0,n-1,1):
     pivote = AB[i,i]
