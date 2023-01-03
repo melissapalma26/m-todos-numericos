@@ -14,9 +14,7 @@ A= np.array([[-4, -1, -2, 3, 7],
 
 B = np.array([97, -1, -22, 138, 62])
 
-
-
-X0  = np.array([0.,0.,0.,0.,0])
+X0  = np.array([0.,0.,0.])
 
 tol = 0.0000001
 imax = 100
@@ -25,6 +23,7 @@ imax = 100
 B0 = np.transpose([B])
 AB  = np.concatenate((A,B0),axis=1)
 AB0 = np.copy(AB)
+
 
 
 # Pivoteo
@@ -46,13 +45,12 @@ for i in range(0,n-1,1):
         print('\ni=',i,'\n',AB)
 
 AB1 = np.copy(AB)
-print('\nMatriz original\n',AB0)
-print('\nMatriz pivoteada\n',AB1)
+#print('\nMatriz original\n',AB0)
+#print('\nMatriz pivoteada\n',AB1)
 
-
+#---------------------------------
 
 # Separar A y B de la matriz
-
 
 M = np.array(AB1[:,0])
 N = np.array(AB1[:,1])
@@ -67,11 +65,11 @@ A = np.array(ZA)
 
 
 B = np.array(AB1[:,5])
-
-
-X0  = np.array([0.,0.,0.,0.,0])
+A = np.array(A,dtype=float) 
+B = np.array(B,dtype=float) 
 
 # PROCEDIMIENTO
+
 
 tamano = np.shape(A)
 n = tamano[0]
@@ -80,7 +78,6 @@ m = tamano[1]
 
 #  valores iniciales
 X = np.copy(X0)
-
 diferencia = np.ones(n, dtype=float)
 error = 2*tol
 
@@ -114,7 +111,6 @@ X = np.transpose([X])
 # si NO converge
 if (itera>imax):
     print('Método no converge')
-    
     sys.exit()
     
 # revisa respuesta
